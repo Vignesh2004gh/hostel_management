@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Detail</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>{{ student.name }} (Roll: {{ student.roll_no }})</h2>
+    <p><strong>Room:</strong> {{ student.room_no }}</p>
+    <hr>
+
+    <h4>Apply Mess Cut</h4>
+    <form method="POST" action="{% url 'add_messcut' student.id %}" class="mb-3">
+        {% csrf_token %}
+        {{ mess_form.as_p }}
+        <button type="submit" class="btn btn-primary">Apply Mess Cut</button>
+    </form>
+
+    <h4>Add Ice Cream</h4>
+    <form method="POST" action="{% url 'add_icecream' student.id %}" class="mb-3">
+        {% csrf_token %}
+        {{ ice_form.as_p }}
+        <button type="submit" class="btn btn-success">Add Ice Cream</button>
+    </form>
+
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+</div>
+</body>
+</html>
